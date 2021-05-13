@@ -36,7 +36,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minPathSum(int[][] grid) {
-        return answer(grid);
+        answer(grid);
     }
 
     private static int answer(int[][] grid) {
