@@ -55,18 +55,42 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-//        if(null != head.next) {
-//            ListNode n = reverseList(head.next);
-//            n.next = head;
-//        }
-//        return head;
-        if(null == head.next.next) {
-            ListNode n = head.next;
-            n.next = head;
-            return n;
+        return way2(head);
+    }
+
+    /**
+     * 递归
+     * @param head
+     * @return
+     */
+    private ListNode way2(ListNode head) {
+        if(null == head || null == head.next) {
+            return head;
         } else {
-            return reverseList(head.next);
+            ListNode end = way2(head.next);
+            head.next.next = head;
+            head.next = null;//防止原连表头元素依然保持原始链接，形成环
+            return end;
         }
+    }
+
+    /**
+     * 迭代 + 双指针 方式
+     * @param head
+     * @return
+     */
+    private ListNode way1(ListNode head) {
+        ListNode p3 = null;
+        ListNode p1 = head;
+        ListNode p2 = null;
+        while(null != p1) {
+            p3 = p1.next;
+            p1.next = p2;
+
+            p2 = p1;
+            p1 = p3;
+        }
+        return p2;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
