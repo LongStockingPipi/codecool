@@ -1,35 +1,52 @@
 package pers.jason.sorting.quicksort;
 
 import pers.jason.sorting.Sorter;
+import pers.jason.utils.PrintUtil;
 
 public class QuickSorter implements Sorter {
 
   @Override
   public int[] sort(int[] array) {
-
-    return new int[0];
+    sort(array, 0, array.length-1);
+    return array;
   }
-  /*
-  5,3,7,2,1,9,8,4,6
-  3,5,7,2,1,9,8,4,6
-  3,2,7,5,1,9,8,4,6
 
-
-
-
-   */
-
-  private int divide(int[] array) {
-    if(array.length == 1) {
-      return array[0];
+  private void sort(int[] array, int left, int right) {
+    if(left < right) {
+      int min = divide(array, left, right);
+      sort(array, left, min-1);
+      sort(array, min+1, right);
     }
-    int mid = array[0];
-    int[] left;
-    int[] right;
-    for(int i=1;i<array.length;i++) {
+  }
 
+
+  private int divide(int[] array, int left, int right) {
+    int pivotKey = array[left];
+    while(left < right) {
+      while(left < right) {
+        if(array[right] < pivotKey) {
+          array[left] = array[right];
+          break;
+        }
+        right--;
+      }
+      while(left < right) {
+        if(array[left] > pivotKey) {
+          array[right] = array[left];
+          break;
+        }
+        left++;
+      }
     }
-    return 0;
+    array[left] = pivotKey;
+    return left;
+  }
+
+  public static void main(String[] args) {
+    Sorter sorter = new QuickSorter();
+    int[] array = new int[]{15, 3, 26, 19, 4, 1, 42, 7, 51, 22, 18, 49, 63, 8, 4, 11, 32};
+    sorter.sort(array);
+    PrintUtil.printIntArray(array);
   }
 
 }
