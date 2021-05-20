@@ -46,35 +46,46 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestPalindrome(String s) {
-        way1(s);
+        return way1(s);
     }
 
-    private int way1(String s) {
+    private String way1(String s) {
+        String result = "";
+        int maxLen = 0;
+
         Character jing = new Character('#');
         StringBuilder sb = new StringBuilder("#");
-        while(x > 0) {
-            int t = x%10;
-            x = x/10;
-            sb.append(t+"").append("#");
+        for(int i=0;i<s.length();i++) {
+            sb.append(s.charAt(i)).append("#");
         }
-        String s = sb.toString();
+        s = sb.toString();
         int len = s.length();
-        int maxLen = 1;
-        for(int i=1;i<len;i++) {
+        for (int i = 1; i < len; i++) {
             int c = Math.min(i, len - i - 1);
-            for(int j=1;j<=c;j++) {
-                Character cleft = s.charAt(i-j);
-                Character cright = s.charAt(i+j);
-                if(cleft != cright) {
+            String str = "";
+            int strLen = 0;
+            for (int j = 1; j <= c; j++) {
+                if(!jing.equals(s.charAt(i)) && strLen == 0) {
+                    str = s.charAt(i) + "";
+                    strLen = 1;
+                }
+                Character cleft = s.charAt(i - j);
+                Character cright = s.charAt(i + j);
+                if (cleft != cright) {
                     break;
                 }
-                if(!jing.equals(cleft) && !jing.equals(cright)) {
-                    maxLen = Math.max(maxLen, j+1);
+                if (!jing.equals(cleft) && !jing.equals(cright)) {
+                    strLen = j + 1;
+                    str = cleft + str + cright;
                 }
+            }
+            if (strLen > maxLen) {
+                maxLen = strLen;
+                result = str;
             }
         }
 
-        return maxLen;
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
