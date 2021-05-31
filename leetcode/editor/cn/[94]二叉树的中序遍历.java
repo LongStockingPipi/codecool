@@ -75,11 +75,11 @@ class Solution {
         if(null == root) {
             return lists;
         }
-        getV(root, lists);
+        way2(root, lists);
         return lists;
     }
 
-    private void getV(TreeNode root, List<Integer> results) {
+    private void way1(TreeNode root, List<Integer> results) {
         TreeNode p = root;
         Stack<TreeNode> stack = new Stack<>();
 
@@ -95,5 +95,17 @@ class Solution {
             }
         }
     }
+
+    private void way2(TreeNode root, List<Integer> results) {
+        if(null != root.left) {
+            way2(root.left, results);
+        }
+        results.add(root.val);
+        if(null != root.right) {
+            way2(root.right, results);
+        }
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
