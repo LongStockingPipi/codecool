@@ -1,4 +1,7 @@
 package pers.jason.support;
 
-public interface Tree<T> {
+public abstract class Tree<T> {
+
 }
+
+
