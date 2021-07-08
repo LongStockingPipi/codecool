@@ -1,6 +1,6 @@
 package pers.jason.support;
 
-public class BinaryTree<T> implements Tree<T> {
+public class BinaryTree<T> extends Tree<T> {
 
   private Node<T> root;
 
