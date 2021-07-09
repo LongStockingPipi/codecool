@@ -1,82 +1,77 @@
 package pers.jason.support;
 
-public class BinaryTree<T> extends Tree<T> {
+import java.util.Iterator;
 
-  private Node<T> root;
+/**
+ *
+ * @param <T>
+ */
+public abstract class BinaryTree<T extends Comparable>
+    implements Tree<T>, java.io.Serializable {
 
-  private int size = 0;
+  private static final long serialVersionUID = 8683452581122892189L;
 
-  private int level = 0;
+  protected int size;
 
-  public BinaryTree() {}
+  protected int depth;
 
-  @Override
-  public String toString() {
-    if(null == this.root) {
-      return "null";
-    }
-    return this.root.toString();
+  protected TreeNode root;
+
+  public BinaryTree() {
+    this.size = 0;
+    this.depth = 0;
   }
 
-  class Node<T> {
+  public BinaryTree(T t) {
+    TreeNode root = new TreeNode(t);
+    this.root = root;
+    this.size = 1;
+    this.depth = 1;
+  }
+
+  class TreeNode {
 
     private T t;
 
-    private Node<T> leftChild;
+    private TreeNode leftChild;
 
-    private Node<T> rightChild;
+    private TreeNode rightChild;
 
-    public Node(T t) {
+    public TreeNode(T t) {
       this.t = t;
     }
 
     public boolean hasLeftChild() {
-      return null != this.leftChild;
+      return null != leftChild;
     }
 
     public boolean hasRightChild() {
-      return null != this.rightChild;
+      return null != rightChild;
     }
 
-    public T getValue() {
-      return t;
+    public void setLeftChild(TreeNode leftChild) {
+      this.leftChild = leftChild;
+    }
+
+    public void setRightChild(TreeNode rightChild) {
+      this.rightChild = rightChild;
+    }
+
+    public TreeNode leftChild() {
+      return this.leftChild;
+    }
+
+    public TreeNode rightChild() {
+      return this.rightChild;
+    }
+
+    public T value() {
+      return this.t;
     }
 
     public void setValue(T t) {
       this.t = t;
     }
 
-    public Node<T> getLeftChild() {
-      return leftChild;
-    }
-
-    public void setLeftChild(Node<T> leftChild) {
-      this.leftChild = leftChild;
-    }
-
-    public Node<T> getRightChild() {
-      return rightChild;
-    }
-
-    public void setRightChild(Node<T> rightChild) {
-      this.rightChild = rightChild;
-    }
-
-    @Override
-    public String toString() {
-      return getToString(this);
-    }
-
-    private String getToString(Node<T> node) {
-      StringBuilder sb = new StringBuilder();
-      if(node.hasLeftChild()) {
-        sb.append(getToString(node.getLeftChild()));
-      }
-      sb.append(node.t.toString());
-      if(node.hasRightChild()) {
-        sb.append(getToString(node.getRightChild()));
-      }
-      return sb.toString();
-    }
   }
 }

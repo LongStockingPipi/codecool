@@ -1,21 +1,27 @@
 package pers.jason.support;
 
-public class BalancedBinaryTree<T> extends Tree {
+import java.util.Iterator;
 
-  private TreeNode root;
+public class BalancedBinaryTree<T> {
 
-
-  public static void main(String[] args) {
-    System.out.print(Math.floor(0.5));
+  public int size() {
+    return 0;
   }
 
+  public boolean isEmpty() {
+    return false;
+  }
 
-}
+  public boolean contains(T t) {
+    return false;
+  }
 
-class TreeNode<T> extends INode {
+  public Iterator<T> iterator() {
+    return null;
+  }
 
-  private TreeNode leftChild;
-
-
+  public boolean add(T t) {
+    return false;
+  }
 }
 
