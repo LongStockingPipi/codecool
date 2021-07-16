@@ -38,8 +38,38 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
 
+    public List<List<Integer>> permute(int[] nums) {
+        calculate(new ArrayList<>(), 0, nums);
+        return result;
     }
+
+    private void calculate(List<Integer> list, int site, int[] nums) {
+        if(list.size() == nums.length) {
+            result.add(list);
+        } else {
+            for(int i=0;i<nums.length;i++) {
+                if(validate(list, nums[i])) {
+                    List<Integer> newList = new ArrayList<>();
+                    newList.addAll(list);
+                    newList.add(nums[i]);
+                    site++;
+                    calculate(newList, site, nums);
+                }
+            }
+        }
+    }
+
+    private boolean validate(List<Integer> list, int ele) {
+        for(Integer i: list) {
+            if(i == ele) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
