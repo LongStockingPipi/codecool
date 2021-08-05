@@ -1,4 +1,4 @@
-package pers.jason.sorting.directinsertionsort;
+package pers.jason.sorting.insertionsort;
 
 import pers.jason.sorting.Sorter;
 
