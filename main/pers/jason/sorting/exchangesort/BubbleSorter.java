@@ -1,4 +1,4 @@
-package pers.jason.sorting.bubblesort;
+package pers.jason.sorting.exchangesort;
 
 import pers.jason.sorting.Sorter;
 import pers.jason.utils.PrintUtil;
