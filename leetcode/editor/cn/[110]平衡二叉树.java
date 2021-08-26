@@ -71,9 +71,14 @@ class Solution {
         }
 
         int leftDepth = depth(treeNode.left);
+        if(-1 == leftDepth) {
+            return -1;
+        }
         int rightDepth = depth(treeNode.right);
-
-        if(-1 == leftDepth || -1 == rightDepth || Math.abs(leftDepth - rightDepth) > 1) {
+        if(-1 == rightDepth) {
+            return -1;
+        }
+        if(Math.abs(leftDepth - rightDepth) > 1) {
             return -1;
         }
         return Math.max(leftDepth, rightDepth) + 1;
